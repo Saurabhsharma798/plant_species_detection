@@ -4,7 +4,11 @@ from PIL import Image
 from pipeline import PlantPredictor
 
 # Initialize predictor
-predictor = PlantPredictor()
+@st.cache_resource
+def load_predictor():
+    return PlantPredictor()
+
+predictor = load_predictor()
 
 # Streamlit UI
 st.title("🌿 Plant Species Classification")
